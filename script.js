@@ -6,7 +6,7 @@ const canvas = document.getElementById('particles-canvas');
 const ctx = canvas.getContext('2d');
 
 let particlesArray = [];
-const numberOfParticles = window.innerWidth < 768 ? 45 : 90;
+const numberOfParticles = window.innerWidth < 768 ? 25 : 50;
 
 // Rainbow color palette for particles
 const rainbowColors = [
@@ -105,22 +105,22 @@ function init() {
 }
 
 function connect() {
+    const maxDist = 12000; // distancia fija en vez de recalcular cada frame
     for (let a = 0; a < particlesArray.length; a++) {
         for (let b = a + 1; b < particlesArray.length; b++) {
-            let dx = particlesArray[a].x - particlesArray[b].x;
-            let dy = particlesArray[a].y - particlesArray[b].y;
-            let distance = dx * dx + dy * dy;
-            let maxDist = (canvas.width / 8) * (canvas.height / 8);
+            const dx = particlesArray[a].x - particlesArray[b].x;
+            if (dx > 110 || dx < -110) continue; // salida rápida
+            const dy = particlesArray[a].y - particlesArray[b].y;
+            if (dy > 110 || dy < -110) continue;
+            const distance = dx * dx + dy * dy;
             if (distance < maxDist) {
-                let opacity = 1 - (distance / maxDist);
-                if (opacity > 0) {
-                    ctx.strokeStyle = `rgba(168, 85, 247, ${opacity * 0.12})`;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                    ctx.stroke();
-                }
+                const opacity = (1 - distance / maxDist) * 0.12;
+                ctx.strokeStyle = `rgba(168, 85, 247, ${opacity})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                ctx.stroke();
             }
         }
     }

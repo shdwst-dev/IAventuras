@@ -47,13 +47,21 @@ function modelLoaded() {
     classifyVideo();
 }
 
-// Función para clasificar lo que ve la cámara
+// Función para clasificar lo que ve la cámara (throttled para rendimiento)
+let lastClassifyTime = 0;
+const CLASSIFY_INTERVAL = 500; // clasificar cada 500ms, no cada frame
+
 function classifyVideo() {
-    // Solo clasificar si el video tiene datos cargados
+    const now = performance.now();
+    if (now - lastClassifyTime < CLASSIFY_INTERVAL) {
+        requestAnimationFrame(classifyVideo);
+        return;
+    }
+    lastClassifyTime = now;
+
     if (video.readyState >= 2) {
         classifier.classify(video, gotResult);
     } else {
-        // Si no está listo, intentar de nuevo en el siguiente frame
         requestAnimationFrame(classifyVideo);
     }
 }

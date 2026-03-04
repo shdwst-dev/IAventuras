@@ -89,10 +89,10 @@ const hands = new Hands({
 });
 
 hands.setOptions({
-    maxNumHands: 1, // Solo detectaremos 1 mano a la vez para este proyecto
-    modelComplexity: 1, // 0 es el más rápido, 1 es equilibrado
-    minDetectionConfidence: 0.7,
-    minTrackingConfidence: 0.7
+    maxNumHands: 1,
+    modelComplexity: 0, // 0 = más rápido, mejor rendimiento
+    minDetectionConfidence: 0.6,
+    minTrackingConfidence: 0.5
 });
 
 // onResults es la función que se llama cada vez que la cámara procesa una imagen
@@ -103,8 +103,8 @@ const camera = new Camera(videoElement, {
     onFrame: async () => {
         await hands.send({ image: videoElement });
     },
-    width: 1280,
-    height: 720
+    width: 640,
+    height: 480
 });
 
 camera.start()

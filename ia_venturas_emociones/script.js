@@ -103,8 +103,7 @@ function onResults(results) {
         // Encontramos una cara
         const landmarks = results.multiFaceLandmarks[0];
 
-        // Efecto visual: Dibujar la malla facial de color sutil cyberpunk
-        drawConnectors(canvasCtx, landmarks, FACEMESH_TESSELATION, { color: 'rgba(139, 92, 246, 0.1)', lineWidth: 1 });
+        // Efecto visual: solo ojos y labios (TESSELATION removido por rendimiento)
         drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_EYE, { color: 'rgba(16, 185, 129, 0.4)' });
         drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_EYE, { color: 'rgba(16, 185, 129, 0.4)' });
         drawConnectors(canvasCtx, landmarks, FACEMESH_LIPS, { color: 'rgba(236, 72, 153, 0.8)' });
