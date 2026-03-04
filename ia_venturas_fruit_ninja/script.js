@@ -15,6 +15,8 @@ const livesDisplay = document.getElementById('lives-display');
 const gameOverScreen = document.getElementById('game-over-screen');
 const finalScoreDisplay = document.getElementById('final-score');
 const restartBtn = document.getElementById('restart-btn');
+const startScreen = document.getElementById('start-screen');
+const startBtn = document.getElementById('start-btn');
 
 // ==========================================
 // Tamaños de Canvas — usar resolución más baja para rendimiento
@@ -32,6 +34,7 @@ uiCanvas.height = canvasHeight;
 let score = 0;
 let lives = 3;
 let isGameOver = false;
+let isGameStarted = false;
 
 // ==========================================
 // Pools de objetos — evitar creación/destrucción constante
@@ -229,10 +232,11 @@ function gameOver() {
     finalScoreDisplay.textContent = score;
 }
 
-restartBtn.addEventListener('click', () => {
+function resetAndStartGame() {
     score = 0;
     lives = 3;
     isGameOver = false;
+    isGameStarted = true;
     // Desactivar todas las frutas y partículas
     for (let i = 0; i < MAX_FRUITS; i++) fruits[i].active = false;
     for (let i = 0; i < MAX_PARTICLES; i++) particlePool[i].active = false;
@@ -240,8 +244,12 @@ restartBtn.addEventListener('click', () => {
     handPosition = null;
     previousHandPosition = null;
     gameOverScreen.classList.add('hidden');
+    startScreen.classList.add('hidden');
     needsDomUpdate = true;
-});
+}
+
+startBtn.addEventListener('click', resetAndStartGame);
+restartBtn.addEventListener('click', resetAndStartGame);
 
 function updateStatsDOM() {
     scoreDisplay.textContent = score;
@@ -279,7 +287,7 @@ function gameLoop() {
     drawingCtx.clearRect(0, 0, canvasWidth, canvasHeight);
     uiCtx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    if (isGameOver) return;
+    if (isGameOver || !isGameStarted) return;
 
     // Spawn
     spawnFruit();
