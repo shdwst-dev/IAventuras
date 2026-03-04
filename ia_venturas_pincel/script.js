@@ -34,7 +34,7 @@ colorButtons.forEach(btn => {
         colorButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentColor = btn.dataset.color;
-        
+
         // Actualizar la bolita en los botones al color seleccionado
         brushSizeInput.style.accentColor = currentColor;
     });
@@ -46,13 +46,30 @@ brushSizeInput.addEventListener('input', (e) => {
     thicknessDisplay.textContent = brushSize;
 });
 
+// Configurar toggle de fondo (negro / cámara)
+const bgButtons = document.querySelectorAll('.bg-btn');
+const videoContainer = document.querySelector('.video-container');
+const videoEl = document.querySelector('.input_video');
+
+bgButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        bgButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (btn.dataset.bg === 'black') {
+            videoEl.style.opacity = '0';
+        } else {
+            videoEl.style.opacity = '0.6';
+        }
+    });
+});
+
 // Función para limpiar la pantalla manualmente o por gesto
 function clearScreen() {
     drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
     modeBadge.textContent = "✨ ¡Lienzo mágico limpio!";
     modeBadge.style.color = "#ff4d4d";
     modeBadge.style.boxShadow = "0 0 30px rgba(255, 77, 77, 0.8)";
-    
+
     // Restaurar estilo normal después de un segundo
     setTimeout(() => {
         modeBadge.style.color = "white";
@@ -105,7 +122,7 @@ function getPixelCoords(landmark) {
     return {
         // En un dispositivo espejo interactivo, la posición visual de MediaPipe 
         // multiplicada por el ancho encaja perfectamente con un Canvas que tiene CSS transform: scaleX(-1)
-        x: landmark.x * canvasWidth, 
+        x: landmark.x * canvasWidth,
         y: landmark.y * canvasHeight
     };
 }
@@ -118,14 +135,14 @@ function onResults(results) {
     if (drawingCanvas.width !== videoElement.clientWidth && videoElement.clientWidth > 0) {
         // Solo recalcular al cambiar tamaño de la ventana
         const oldImage = drawingCtx.getImageData(0, 0, drawingCanvas.width, drawingCanvas.height);
-        
+
         canvasWidth = videoElement.clientWidth;
         canvasHeight = videoElement.clientHeight;
         drawingCanvas.width = canvasWidth;
         drawingCanvas.height = canvasHeight;
         uiCanvas.width = canvasWidth;
         uiCanvas.height = canvasHeight;
-        
+
         drawingCtx.putImageData(oldImage, 0, 0); // Preservar el dibujo
     }
 
@@ -165,7 +182,7 @@ function onResults(results) {
             modeBadge.textContent = "🖐️ Borrador mágico (Mantén para borrar)...";
             modeBadge.style.boxShadow = "0 0 20px rgba(255, 77, 77, 0.8)";
             isDrawing = false;
-            
+
             // Animación de carga para borrar
             uiCtx.beginPath();
             uiCtx.arc(coords.x, coords.y, 40, 0, 2 * Math.PI);
@@ -174,12 +191,12 @@ function onResults(results) {
 
             if (clearHoverStartTime === 0) {
                 clearHoverStartTime = Date.now();
-            } else if (Date.now() - clearHoverStartTime > 1500) { 
+            } else if (Date.now() - clearHoverStartTime > 1500) {
                 // Si la mano estuvo abierta en pantalla por 1.5 segundos
                 clearScreen();
                 clearHoverStartTime = 0;
             }
-        } 
+        }
         // ESTADO 2: Modo Dibujo (Solo Índice y Medio arriba)
         else if (isIndexUp && isMiddleUp && !isRingUp) {
             clearHoverStartTime = 0;
@@ -202,7 +219,7 @@ function onResults(results) {
                 drawingCtx.beginPath();
                 drawingCtx.moveTo(lastX, lastY);
                 drawingCtx.lineTo(coords.x, coords.y);
-                
+
                 // Estilo "Premium / Neón"
                 drawingCtx.strokeStyle = currentColor;
                 drawingCtx.lineWidth = brushSize * 2;
@@ -210,14 +227,14 @@ function onResults(results) {
                 drawingCtx.lineJoin = 'round';
                 drawingCtx.shadowBlur = Math.min(25, brushSize * 3);
                 drawingCtx.shadowColor = currentColor;
-                
+
                 drawingCtx.stroke();
 
                 // Actualizar posiciones
                 lastX = coords.x;
                 lastY = coords.y;
             }
-        } 
+        }
         // ESTADO 3: Modo Puntero (Solo Índice arriba)
         else if (isIndexUp && !isMiddleUp && !isRingUp) {
             clearHoverStartTime = 0;
@@ -235,7 +252,7 @@ function onResults(results) {
             uiCtx.arc(coords.x, coords.y, 4, 0, 2 * Math.PI);
             uiCtx.fillStyle = currentColor;
             uiCtx.fill();
-        } 
+        }
         // OTROS ESTADOS (Puño cerrado, posturas sin definir)
         else {
             clearHoverStartTime = 0;
