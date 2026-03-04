@@ -1,0 +1,589 @@
+:root {
+    --bg-color: #0a0a2e;
+    --bg-secondary: #1a1a4e;
+    --primary: #7c3aed;
+    --secondary: #a855f7;
+    --accent-pink: #ec4899;
+    --accent-cyan: #06b6d4;
+    --accent-yellow: #facc15;
+    --accent-green: #34d399;
+    --accent-orange: #fb923c;
+    --text-main: #f8fafc;
+    --text-muted: #c4b5fd;
+    --card-bg: rgba(124, 58, 237, 0.08);
+    --card-border: rgba(168, 85, 247, 0.25);
+    --card-hover: rgba(124, 58, 237, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, var(--bg-color) 0%, #1e1060 40%, #2d1b69 60%, #0a0a2e 100%);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ========== SPLASH SCREEN ========== */
+.splash {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 9999;
+    background: radial-gradient(ellipse at center, #2d1b69 0%, #0a0a2e 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: splashFadeOut 0.6s ease 3s forwards;
+    pointer-events: all;
+}
+
+.splash.hidden {
+    pointer-events: none;
+}
+
+.splash-content {
+    text-align: center;
+    animation: splashPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.splash-emoji {
+    font-size: 6rem;
+    animation: rocketBounce 1s ease infinite alternate;
+    filter: drop-shadow(0 0 20px rgba(250, 204, 21, 0.5));
+}
+
+@keyframes rocketBounce {
+    0% { transform: translateY(0) rotate(-5deg); }
+    100% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.splash-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 5rem;
+    background: linear-gradient(135deg, #facc15, #ec4899, #7c3aed, #06b6d4);
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+    margin: 1rem 0;
+    text-shadow: none;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.splash-sub {
+    font-size: 1.4rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.splash-stars {
+    font-size: 2.5rem;
+    animation: starPulse 1.5s ease infinite;
+}
+
+@keyframes starPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+.splash-loader {
+    width: 200px;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    margin: 1.5rem auto 0;
+    overflow: hidden;
+}
+
+.loader-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink), var(--accent-yellow));
+    border-radius: 3px;
+    animation: loaderGrow 2.5s ease forwards;
+}
+
+@keyframes loaderGrow {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+@keyframes splashPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes splashFadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; pointer-events: none; visibility: hidden; }
+}
+
+/* ========== PARTICLES ========== */
+#particles-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ========== CONTAINER ========== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== HEADER ========== */
+header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeInDown 1s ease-out;
+    position: relative;
+}
+
+/* ========== ROBOT MASCOT ========== */
+.mascot {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    animation: mascotFloat 3s ease-in-out infinite;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.mascot:hover {
+    animation: mascotWave 0.5s ease;
+}
+
+@keyframes mascotFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes mascotWave {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    50% { transform: rotate(-10deg); }
+    75% { transform: rotate(5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.robot-head {
+    width: 80px;
+    height: 70px;
+    background: linear-gradient(180deg, #7c3aed, #a855f7);
+    border-radius: 20px 20px 15px 15px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(124, 58, 237, 0.4), inset 0 -3px 0 rgba(0,0,0,0.2);
+}
+
+.robot-antenna {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 18px;
+    background: #c4b5fd;
+    border-radius: 2px;
+}
+
+.antenna-ball {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: var(--accent-yellow);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(250, 204, 21, 0.8);
+    animation: antennaPulse 1.5s ease infinite;
+}
+
+@keyframes antennaPulse {
+    0%, 100% { box-shadow: 0 0 12px rgba(250, 204, 21, 0.8); transform: translateX(-50%) scale(1); }
+    50% { box-shadow: 0 0 20px rgba(250, 204, 21, 1); transform: translateX(-50%) scale(1.2); }
+}
+
+.robot-face {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.robot-eye {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255,255,255,0.6);
+    animation: eyeBlink 4s ease infinite;
+}
+
+.robot-eye::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #1a1a4e;
+    border-radius: 50%;
+    top: 4px;
+    left: 4px;
+    animation: eyeLook 5s ease-in-out infinite;
+}
+
+@keyframes eyeBlink {
+    0%, 45%, 55%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); }
+}
+
+@keyframes eyeLook {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(3px); }
+    75% { transform: translateX(-3px); }
+}
+
+.robot-mouth {
+    width: 24px;
+    height: 10px;
+    border: 3px solid #fff;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    margin-top: -2px;
+    animation: mouthSmile 3s ease infinite;
+}
+
+@keyframes mouthSmile {
+    0%, 100% { width: 24px; }
+    50% { width: 30px; }
+}
+
+.robot-body {
+    width: 65px;
+    height: 45px;
+    background: linear-gradient(180deg, #6d28d9, #7c3aed);
+    border-radius: 12px;
+    margin: 5px auto 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(109, 40, 217, 0.4), inset 0 -3px 0 rgba(0,0,0,0.2);
+}
+
+.robot-arm {
+    position: absolute;
+    width: 14px;
+    height: 35px;
+    background: #8b5cf6;
+    border-radius: 7px;
+    top: 5px;
+}
+
+.left-arm {
+    left: -18px;
+    animation: armWave 2s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+.right-arm {
+    right: -18px;
+    animation: armWave 2s ease-in-out 0.3s infinite;
+    transform-origin: top center;
+}
+
+@keyframes armWave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+}
+
+.robot-heart {
+    font-size: 1.2rem;
+    animation: heartBeat 1.5s ease infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+.robot-chest {
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 4px 8px;
+}
+
+/* ========== LOGO ========== */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.logo i {
+    font-size: 3.5rem;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-pink), var(--accent-yellow));
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 4s ease infinite;
+    filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.4));
+}
+
+h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 4rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #ffffff, #c4b5fd, #ec4899);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 5s ease infinite;
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    animation: fadeIn 1.5s ease;
+}
+
+/* ========== CARD GRID ========== */
+.grid-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    perspective: 1000px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-out backwards;
+}
+
+.card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--secondary), var(--accent-pink), var(--accent-yellow));
+    background-size: 300% 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: rainbowSlide 3s linear infinite;
+}
+
+@keyframes rainbowSlide {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+
+.card:nth-child(1) { --glow-color: var(--accent-cyan); }
+.card:nth-child(2) { --glow-color: var(--accent-yellow); }
+.card:nth-child(3) { --glow-color: var(--accent-green); }
+.card:nth-child(4) { --glow-color: var(--accent-orange); }
+
+.card:hover {
+    transform: translateY(-14px) scale(1.03);
+    background: var(--card-hover);
+    border-color: var(--glow-color);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 30px color-mix(in srgb, var(--glow-color) 30%, transparent),
+        inset 0 0 30px color-mix(in srgb, var(--glow-color) 5%, transparent);
+}
+
+.card:hover .card-glow {
+    opacity: 1;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    background: rgba(124, 58, 237, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.card:hover .card-icon {
+    background: linear-gradient(135deg, var(--primary), var(--accent-pink));
+    color: white;
+    transform: rotate(8deg) scale(1.1);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.5);
+    border-color: transparent;
+}
+
+.card h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.card-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--secondary);
+    transition: all 0.3s ease;
+    margin-top: auto;
+    font-size: 1.1rem;
+}
+
+.card:hover .card-action {
+    gap: 1rem;
+    color: var(--accent-pink);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    opacity: 0.7;
+    animation: fadeIn 2s ease;
+}
+
+.footer strong {
+    color: var(--secondary);
+}
+
+/* ========== CONFETTI (via JS) ========== */
+.confetti-piece {
+    position: fixed;
+    z-index: 9998;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
+}
+
+/* ========== SPARKLE DECORATIONS ========== */
+.sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: sparkleFloat 6s ease-in-out infinite;
+}
+
+@keyframes sparkleFloat {
+    0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
+    50% { opacity: 0.6; transform: translateY(-30px) scale(1); }
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .logo i { font-size: 2.5rem; }
+    .grid-menu { grid-template-columns: 1fr; }
+    .splash-title { font-size: 3rem; }
+    .splash-emoji { font-size: 4rem; }
+    .robot-head { width: 60px; height: 55px; }
+    .robot-body { width: 50px; height: 35px; }
+}

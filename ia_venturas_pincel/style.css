@@ -1,0 +1,303 @@
+:root {
+    --bg-color: #0b0f19;
+    --panel-bg: rgba(20, 30, 48, 0.7);
+    --text-main: #ffffff;
+    --text-muted: #c4b5fd;
+    --accent: #00ffcc;
+    --glass-border: rgba(168, 85, 247, 0.25);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0b0f19 0%, #1e1060 40%, #2d1b69 60%, #0b0f19 100%);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.app-container {
+    width: 95%;
+    max-width: 1400px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.back-btn {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.back-btn:hover {
+    background: rgba(124, 58, 237, 0.3);
+    color: #fff;
+    transform: translateX(-3px);
+}
+
+h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem;
+    font-weight: 400;
+    background: linear-gradient(90deg, #00ffcc, #a855f7, #ec4899);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 5s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(45deg); }
+    100% { filter: hue-rotate(0deg); }
+}
+
+.badge {
+    font-size: 0.9rem;
+    background: rgba(0, 255, 204, 0.15);
+    border: 1px solid var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: var(--accent);
+    vertical-align: middle;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.workspace {
+    display: flex;
+    gap: 25px;
+    flex: 1;
+    height: calc(100% - 80px);
+}
+
+.video-container {
+    flex: 1;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 0 2px rgba(168, 85, 247, 0.3);
+}
+
+.input_video, .drawing_canvas, .ui_canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Efecto espejo para que el usuario interactúe naturalmente */
+    transform: scaleX(-1);
+    object-fit: cover;
+}
+
+.input_video {
+    z-index: 1;
+    opacity: 0.6; /* Hacemos el video más oscuro para resaltar los trazos neón */
+}
+
+.drawing_canvas {
+    z-index: 2;
+}
+
+/* El UI Canvas es donde dibujaremos la bolita de seguimiento actual */
+.ui_canvas {
+    z-index: 3;
+}
+
+.status-indicator {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.mode-badge {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.controls-panel {
+    width: 380px;
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 0 15px rgba(124, 58, 237, 0.1);
+}
+
+h3 {
+    font-size: 1.4rem;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 15px;
+    color: #fff;
+}
+
+h4 {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.instructions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.instructions li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.2s;
+}
+
+.instructions li:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.icon-gestures {
+    font-size: 2rem;
+    background: rgba(255,255,255,0.05);
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2));
+}
+
+.instructions strong {
+    color: var(--accent);
+    font-family: 'Fredoka One', cursive;
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.instructions p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.color-options {
+    display: flex;
+    gap: 12px;
+}
+
+.color-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border 0.2s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.1);
+}
+
+.color-btn:hover {
+    transform: scale(1.25) rotate(10deg);
+}
+
+.color-btn.active {
+    border: 3px solid white;
+    transform: scale(1.3);
+    box-shadow: 0 5px 20px rgba(255,255,255,0.3);
+}
+
+.thickness-picker {
+    margin-top: 10px;
+}
+
+input[type=range] {
+    width: 100%;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.action-btn {
+    margin-top: auto;
+    background: linear-gradient(90deg, rgba(236, 72, 153, 0.2), rgba(124, 58, 237, 0.2));
+    color: #f472b6;
+    border: 1px solid rgba(236, 72, 153, 0.4);
+    padding: 15px;
+    border-radius: 16px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-btn:hover {
+    background: linear-gradient(90deg, rgba(236, 72, 153, 0.3), rgba(124, 58, 237, 0.3));
+    box-shadow: 0 0 25px rgba(236, 72, 153, 0.4);
+    transform: translateY(-3px) scale(1.02);
+}
+
+@media (max-width: 900px) {
+    .workspace { flex-direction: column; }
+    .controls-panel { width: 100%; }
+}

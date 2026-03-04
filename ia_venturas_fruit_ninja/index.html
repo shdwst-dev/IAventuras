@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Ninja IA - IA-venturas</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Librerías de MediaPipe (Computer Vision) — versiones fijadas -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.6.1675466862/control_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/drawing_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js"
+        crossorigin="anonymous"></script>
+
+    <!-- Fuente Moderna de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Outfit:wght@300;500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>IA-venturas <span class="badge">🥷 FERIA DE CIENCIAS</span></h1>
+            <h2>¡Sé un ninja con tus propias manos! ⚔️</h2>
+            <div class="score-board glass-panel">
+                <div class="score-wrapper">Puntos: <span id="score-display">0</span></div>
+                <div class="lives-wrapper">Vidas: <span id="lives-display">❤️❤️❤️</span></div>
+            </div>
+            <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+        </header>
+
+        <main class="workspace">
+            <div class="video-container">
+                <video class="input_video" autoplay playsinline></video>
+                <canvas class="drawing_canvas"></canvas>
+                <canvas class="ui_canvas"></canvas>
+
+                <div class="status-indicator">
+                    <span id="current-mode" class="mode-badge">Iniciando Cámara e Inteligencia Artificial...</span>
+                </div>
+
+                <div id="game-over-screen" class="overlay hidden glass-panel">
+                    <h2>¡Se acabó el juego! 💥</h2>
+                    <p>Puntuación Final: <span id="final-score">0</span></p>
+                    <button id="restart-btn" class="action-btn">🔄 ¡Otra vez!</button>
+                </div>
+            </div>
+
+            <aside class="controls-panel glass-panel">
+                <h3>🎮 ¿Cómo se juega?</h3>
+                <ul class="instructions">
+                    <li>
+                        <div class="icon-gestures">☝️</div>
+                        <div>
+                            <strong>Modo Espada</strong>
+                            <p>¡Mueve tu mano rápido frente a la cámara para cortar!</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-gestures">🍎</div>
+                        <div>
+                            <strong>Cortar Frutas</strong>
+                            <p>¡Pasa la mano por las frutas y gana puntos! 🎯</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-gestures">💣</div>
+                        <div>
+                            <strong>¡Evitar Bombas!</strong>
+                            <p>¡No toques las bombas o pierdes una vida! 😱</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="info-section">
+                    <p>🤖 La IA ve tus manos y las convierte en espadas ninja. ¡Sin tocar nada!</p>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Script principal del juego -->
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de Emociones - IA-venturas</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Librerías de MediaPipe (Computer Vision) -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Outfit:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Volver al Menú</a>
+            <h1>IA-venturas <span class="badge">😃 FERIA DE CIENCIAS</span></h1>
+            <h2>¡La IA puede ver si estás feliz! 🤩</h2>
+        </header>
+
+        <main class="workspace">
+            <div class="video-container glass-panel">
+                <video class="input_video" autoplay playsinline></video>
+                <canvas class="output_canvas"></canvas>
+
+                <div class="status-indicator">
+                    <span id="current-mode" class="mode-badge loading">Iniciando Red Neuronal...</span>
+                </div>
+            </div>
+
+            <aside class="dashboard glass-panel">
+                <h3><i class="fa-solid fa-chart-line"></i> 🎭 ¿Cómo te sientes?</h3>
+
+                <div class="emotion-display" id="main-emotion">
+                    <div class="emoji-circle">😐</div>
+                    <div class="emotion-text">Neutro</div>
+                </div>
+
+                <div class="metrics">
+                    <div class="metric-item">
+                        <label>😊 ¡Sonrisa detectada!</label>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar joy-bar" id="joy-lvl" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="metric-item">
+                        <label>😮 ¡Cara de sorpresa!</label>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar surprise-bar" id="surprise-lvl" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="instructions-box">
+                    <h4><i class="fa-solid fa-chalkboard-user"></i> 🧠 ¿Cómo funciona?</h4>
+                    <p>¡La cámara pone 468 puntitos invisibles en tu cara y observa cómo se mueven!</p>
+                    <ul>
+                        <li><i class="fa-regular fa-face-smile"></i> <strong>Alegría:</strong> ¡Ve cuando sonríes! 😁
+                        </li>
+                        <li><i class="fa-regular fa-face-surprise"></i> <strong>Sorpresa:</strong> ¡Ve cuando abres la
+                            boca! 😲</li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+
+</html>

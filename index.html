@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA-venturas | Menú Principal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ✨ Splash Screen de bienvenida -->
+    <div id="splash-screen" class="splash">
+        <div class="splash-content">
+            <div class="splash-emoji">🚀</div>
+            <h1 class="splash-title">¡IA-venturas!</h1>
+            <p class="splash-sub">Descubre la magia de la Inteligencia Artificial</p>
+            <div class="splash-stars">✨🤖✨</div>
+            <div class="splash-loader">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <!-- 🤖 Mascota Robot -->
+            <div class="mascot" id="mascot">
+                <div class="robot-head">
+                    <div class="robot-antenna">
+                        <div class="antenna-ball"></div>
+                    </div>
+                    <div class="robot-face">
+                        <div class="robot-eye left"></div>
+                        <div class="robot-eye right"></div>
+                        <div class="robot-mouth"></div>
+                    </div>
+                </div>
+                <div class="robot-body">
+                    <div class="robot-arm left-arm"></div>
+                    <div class="robot-chest">
+                        <div class="robot-heart">💡</div>
+                    </div>
+                    <div class="robot-arm right-arm"></div>
+                </div>
+            </div>
+            <div class="logo">
+                <i class="fa-solid fa-brain"></i>
+                <h1>IA-venturas</h1>
+            </div>
+            <p class="subtitle">¡Descubre el poder mágico de la Inteligencia Artificial! 🪄✨</p>
+        </header>
+
+        <main class="grid-menu">
+            <!-- Interacción 1 -->
+            <a href="ia_venturas_pincel/index.html" class="card" data-emoji="🎨">
+                <div class="card-glow"></div>
+                <div class="card-icon">
+                    <i class="fa-solid fa-paintbrush"></i>
+                </div>
+                <h2>🎨 Pincel Mágico</h2>
+                <p>¡Dibuja en el aire usando tus manos como un mago! La cámara sigue tus movimientos y los convierte en
+                    arte. ✨</p>
+                <div class="card-action">¡Vamos! <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- Interacción 2 -->
+            <a href="ia_venturas_emociones/index.html" class="card" data-emoji="😃">
+                <div class="card-glow"></div>
+                <div class="card-icon">
+                    <i class="fa-solid fa-face-smile"></i>
+                </div>
+                <h2>😃 Detector de Emociones</h2>
+                <p>¡Sonríe, sorpréndete o haz caras chistosas! La IA puede ver lo que sientes con solo mirarte. 🤩</p>
+                <div class="card-action">¡Vamos! <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- Interacción 3 -->
+            <a href="ia_venturas_reconocimiento/index.html" class="card" data-emoji="📸">
+                <div class="card-glow"></div>
+                <div class="card-icon">
+                    <i class="fa-solid fa-camera-retro"></i>
+                </div>
+                <h2>📸 ¿Qué Es Esto?</h2>
+                <p>Muestra cualquier cosa a la cámara y la Inteligencia Artificial intentará adivinar qué es. ¡A ver si
+                    le ganas! 🧠</p>
+                <div class="card-action">¡Vamos! <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- Interacción 4 -->
+            <a href="ia_venturas_fruit_ninja/index.html" class="card" data-emoji="🥷">
+                <div class="card-glow"></div>
+                <div class="card-icon">
+                    <i class="fa-solid fa-hand-sparkles"></i>
+                </div>
+                <h2>🥷 Ninja de Frutas</h2>
+                <p>¡Corta frutas sin tocar la pantalla! Usa tus manos como espada ninja gracias a la magia de la IA.
+                    🍎⚔️</p>
+                <div class="card-action">¡Vamos! <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+        </main>
+
+        <footer class="footer">
+            <p>Hecho con 💜 por el equipo <strong>IA-venturas</strong> · Feria de Ciencias 2026</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

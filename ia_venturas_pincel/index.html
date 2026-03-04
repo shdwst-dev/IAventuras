@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pincel Mágico con IA - IA-venturas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Outfit:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Librerías de MediaPipe (Computer Vision) -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+    <!-- Fuente Moderna de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Volver al Menú</a>
+            <h1>IA-venturas <span class="badge">🎨 FERIA DE CIENCIAS</span></h1>
+            <h2>¡Dibuja en el aire como un mago! ✨</h2>
+        </header>
+
+        <main class="workspace">
+            <div class="video-container">
+                <video class="input_video" autoplay playsinline></video>
+                <canvas class="drawing_canvas"></canvas>
+                <canvas class="ui_canvas"></canvas>
+
+                <div class="status-indicator">
+                    <span id="current-mode" class="mode-badge">Iniciando Inteligencia Artificial...</span>
+                </div>
+            </div>
+
+            <aside class="controls-panel glass-panel">
+                <h3>🎮 ¿Cómo se usa?</h3>
+                <ul class="instructions">
+                    <li>
+                        <div class="icon-gestures">☝️</div>
+                        <div>
+                            <strong>Modo Puntero</strong>
+                            <p>¡Levanta solo un dedito para mover sin pintar!</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-gestures">✌️</div>
+                        <div>
+                            <strong>Modo Dibujo</strong>
+                            <p>¡Levanta dos deditos y dibuja lo que quieras! 🖌️</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-gestures">🖐️</div>
+                        <div>
+                            <strong>Borrador Mágico</strong>
+                            <p>¡Abre toda la mano y borra todo como magia! 🪄</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="color-picker">
+                    <h4>🌈 Elige tu color</h4>
+                    <div class="color-options">
+                        <button class="color-btn active" data-color="#00ffcc" style="background: #00ffcc;"></button>
+                        <button class="color-btn" data-color="#ff00cc" style="background: #ff00cc;"></button>
+                        <button class="color-btn" data-color="#ffff00" style="background: #ffff00;"></button>
+                        <button class="color-btn" data-color="#ff3333" style="background: #ff3333;"></button>
+                        <button class="color-btn" data-color="#ffffff" style="background: #ffffff;"></button>
+                    </div>
+                </div>
+
+                <div class="thickness-picker">
+                    <h4>✏️ Grosor del trazo: <span id="thickness-display">8</span>px</h4>
+                    <input type="range" id="brush-size" min="2" max="30" value="8">
+                </div>
+
+                <button id="clear-btn" class="action-btn">🗑️ ¡Borrar Todo!</button>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Script principal de la aplicación -->
+    <script src="script.js"></script>
+</body>
+
+</html>
